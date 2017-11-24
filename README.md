@@ -1,0 +1,2 @@
+# MonkeyNews
+Simple news site.
