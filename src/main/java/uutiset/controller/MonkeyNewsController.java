@@ -1,6 +1,8 @@
 package uutiset.controller;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +34,7 @@ public class MonkeyNewsController {
     }
 
     @PostMapping("/")
-    public String add(@RequestParam String title, @RequestParam String text, @RequestParam("file") MultipartFile file) throws IOException {
+    public String add(@RequestParam String title, @RequestParam String text, @RequestParam("file") MultipartFile file){
 
 //        if(!file.getContentType().contentEquals("image/png") || !file.getContentType().contentEquals("image/jpeg")){
 //            return "redirect:/";
@@ -40,7 +42,11 @@ public class MonkeyNewsController {
         Article article = new Article();
         article.setTitle(title);
         article.setText(text);
-        article.setContent(file.getBytes());
+        try {
+            article.setContent(file.getBytes());
+        } catch (IOException ex) {
+            System.out.println("VIRHE VIRHE VIRHE");;
+        }
         aRepo.save(article);
         return "redirect:/";
     }
