@@ -34,7 +34,7 @@ public class MonkeyNewsController {
     }
 
     @PostMapping("/")
-    public String add(@RequestParam String title, @RequestParam String text, @RequestParam("file") MultipartFile file) {
+    public String add(@RequestParam String title, @RequestParam String text, @RequestParam("file") MultipartFile file) throws IOException {
 
 //        if(!file.getContentType().contentEquals("image/png") || !file.getContentType().contentEquals("image/jpeg")){
 //            return "redirect:/";
