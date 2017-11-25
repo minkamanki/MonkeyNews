@@ -34,7 +34,7 @@ public class MonkeyNewsController {
     }
 
     @PostMapping("/")
-    public String add(@RequestParam String title, @RequestParam String text, @RequestParam("file") MultipartFile file){
+    public String add(@RequestParam String title, @RequestParam String text, @RequestParam("file") MultipartFile file) {
 
 //        if(!file.getContentType().contentEquals("image/png") || !file.getContentType().contentEquals("image/jpeg")){
 //            return "redirect:/";
@@ -42,11 +42,8 @@ public class MonkeyNewsController {
         Article article = new Article();
         article.setTitle(title);
         article.setText(text);
-        try {
-            article.setContent(file.getBytes());
-        } catch (IOException ex) {
-            System.out.println("VIRHE VIRHE VIRHE");;
-        }
+        article.setContent(file.getBytes());
+
         aRepo.save(article);
         return "redirect:/";
     }
