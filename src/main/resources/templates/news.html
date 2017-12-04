@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -12,18 +12,33 @@
             <li th:each="article :${news}">
                 <a th:href="@{/{id}(id=${article.id})}">
                 <span th:text="${article.title}">Title</span></a>
-                <!--<span th:text="${article.text}">Title</span><br></br>-->
-                <!--<img th:src="${article.content}"/>-->
             </li>
         </ol>
 
         <h2>Add</h2>
 
         <form method="POST" th:action="@{/}" enctype="multipart/form-data">
-            <input type="text" name="title" value="Title"/><br></br>
+            <input type="text" name="title" placeholder="Title"/><br></br>
+            <input type="text" name="lede" placeholder="Lead paragraph"/><br></br>
             <textarea name="text"></textarea><br></br>
             <input type="file" name="file"/><br></br>
             <input type="submit" value="Send!"/>
         </form>
+    </body>
+</html>-->
+
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>MonkeyNews</title>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <h1>MonkeyNews</h1>
+        
+        Selaa uutisia -linkki (maybe later)
+<!--        <a href="/authors">Author management</a><br/>-->
+        <a href="/articles">Add news</a><br/>
     </body>
 </html>

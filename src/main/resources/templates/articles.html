@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>MonkeyNews</title>
+    </head>
+    <body>
+        <h1>Articles</h1>
+
+        <h2>Add new Article</h2>
+
+        <div>
+
+            <form method="POST" action="/articles" enctype="multipart/form-data">
+                <input type="text" name="title" placeholder="Title"/><br></br>
+                <input type="text" name="lede" placeholder="Lead paragraph"/><br></br>
+                <textarea name="text"></textarea><br></br>
+                <input type="file" name="file"/><br></br>
+                <input type="submit" value="Send!"/>
+            </form>
+
+
+
+            <!--
+                        Enter name and length and press Submit:<br/>
+                        <form action="/articles" method="POST">
+                            Name: <input type="text" name="name" id="name"/><br/>
+                            Length: <input type="text" name="lengthInMinutes" id="lengthInMinutes"/><br/>
+                            <input type="submit"/>           
+                        </form>
+                    </div>-->
+
+            <h2>Current Articles</h2>
+
+            <ol>
+                <li th:each="article : ${articles}">
+                    <span th:text="${article.title}">Title</span> 
+                    <form th:action="@{/articles/{articleId}(articleId=${article.id})}" th:method="DELETE">
+                        <input type="submit" value="Remove"/>
+                    </form><br/>
+
+                    <span>Authors:</span>
+                    <ul>
+                        <li th:each="author : ${article.authors}" th:text="${author.name}">jcvd?</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div><a href="/authors">Authors</a></div>
+        </div>
+    </body>
+</html>
+

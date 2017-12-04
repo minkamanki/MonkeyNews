@@ -11,8 +11,12 @@
         
         <p>
             <span th:text="${article.text}">article</span>
+            <span th:text="${article.lede}">Lead paragraph</span>
             <img th:src="@{/{id}/content(id=${article.id})}"/>
-        </p>
-        
+
+        </p>    
+        <span>Authors</span>
+        <ol><li th:each="author : ${article.authors}" th:text="${author.name}">Author</li></ol>
+          
     </body>
 </html>
