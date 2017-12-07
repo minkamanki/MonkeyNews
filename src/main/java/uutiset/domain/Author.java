@@ -17,5 +17,4 @@ public class Author extends AbstractPersistable<Long> {
     private String name;
     @ManyToMany(mappedBy = "authors")
     private List<Article> articles; 
-    private boolean bar;
 }
