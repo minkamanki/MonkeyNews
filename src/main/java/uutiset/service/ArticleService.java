@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uutiset.domain.Article;
 import uutiset.domain.Author;
+import uutiset.domain.Category;
 import uutiset.repository.ArticleRepository;
 import uutiset.repository.AuthorRepository;
 import uutiset.repository.CategoryRepository;
@@ -45,7 +46,9 @@ public class ArticleService {
         for (Author author : article.getAuthors()) {
             author.getArticles().remove(article);
         }
-
+        for (Category categoty : article.getCategories()) {
+            categoty.getArticles().remove(article);
+        }
         articleRepository.delete(article);
     }
 
