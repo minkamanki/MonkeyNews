@@ -28,4 +28,6 @@ public class Article extends AbstractPersistable<Long> {
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
+    @ManyToMany(mappedBy = "articles")
+    private List<Category> categories;
 }

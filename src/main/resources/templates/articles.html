@@ -34,7 +34,8 @@
 
             <ol>
                 <li th:each="article : ${articles}">
-                    <span th:text="${article.title}">Title</span> 
+                    <a th:href="@{/articles/{articleId}(articleId=${article.id})}" th:text="${article.title}">article title</a>
+<!--                    <span th:text="${article.title}">Title</span> -->
                     <form th:action="@{/articles/{articleId}(articleId=${article.id})}" th:method="DELETE">
                         <input type="submit" value="Remove"/>
                     </form><br/>
@@ -47,6 +48,7 @@
             </ol>
 
             <div><a href="/authors">Authors</a></div>
+            <div><a href="/categories">Categories</a></div>
         </div>
     </body>
 </html>

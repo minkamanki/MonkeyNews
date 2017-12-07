@@ -8,15 +8,17 @@
     </head>
     <body>
         <h1><span th:text="${article.title}">Title</span></h1>
-        
+
         <p>
-            <span th:text="${article.text}">article</span>
-            <span th:text="${article.lede}">Lead paragraph</span>
-            <img th:src="@{/{id}/content(id=${article.id})}"/>
+            <span th:text="${article.text}">article</span> <br> </br>
+
+            <span th:text="${article.lede}">Lead paragraph</span><br> </br>
+
+             <img th:src="@{/{id}/content(id=${article.id})}"/><br> </br>
 
         </p>    
         <span>Authors</span>
         <ol><li th:each="author : ${article.authors}" th:text="${author.name}">Author</li></ol>
-          
+
     </body>
 </html>

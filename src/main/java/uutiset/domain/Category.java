@@ -12,10 +12,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 @Data
 @Entity
-public class Author extends AbstractPersistable<Long> {
-
+public class Category extends AbstractPersistable<Long>{
     private String name;
-    @ManyToMany(mappedBy = "authors")
-    private List<Article> articles; 
-    private boolean bar;
+    @ManyToMany
+    private List<Article> articles;
 }

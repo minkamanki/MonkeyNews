@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>MonkeyNews</title>
+    </head>
+    <body>
+ 
+        <h1>Category <span th:text="${category.name}">JCVD</span></h1>
+ 
+        <h2>Articles</h2>
+ 
+        <div>
+            <ul>
+                <li th:each="article : ${category.articles}" th:text="${article.title}"></li>
+            </ul>
+        </div>
+ 
+        <div th:if="${not #lists.isEmpty(articles)}">
+ 
+            <h2>Add to article</h2>
+ 
+            <form method="POST" th:action="@{/categories/{categoryId}/articles(categoryId=${category.id})}">
+                <select name="articleId">
+                    <option th:each="article : ${articles}" th:value="${article.id}" th:text="${article.title}">article</option>
+                </select>
+                <input type="submit" value="Assign" id="add-to-article"/>
+            </form>
+        </div>
+ 
+        <div><a href="/categories">Categories</a></div>
+ 
+    </body>
+ 
+</html>

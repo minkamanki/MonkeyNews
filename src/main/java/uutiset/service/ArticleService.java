@@ -30,7 +30,12 @@ public class ArticleService {
         article.setContent(content);
         articleRepository.save(article);
     }
- 
+
+    @Transactional
+    public Article findById(Long id) {
+        return articleRepository.findById(id).get();
+    }
+
     @Transactional
     public void remove(Long articleId) {
         Article article = articleRepository.getOne(articleId);
@@ -43,9 +48,9 @@ public class ArticleService {
 
     @Transactional(readOnly = true)
     public List<Article> listArticlesWithout(Long authorId) {
-        List<Article> without =  articleRepository.findAll();
+        List<Article> without = articleRepository.findAll();
         without.removeAll(authorRepository.getOne(authorId).getArticles());
-   
+
         return without;
     }
 }
