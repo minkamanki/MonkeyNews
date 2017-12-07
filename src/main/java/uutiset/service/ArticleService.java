@@ -25,12 +25,12 @@ public class ArticleService {
     }
 
     @Transactional
-    public void add(String title, String lede, String text, byte[] content) {
+    public void add(String title, String lede, String text) { // byte[] content
         Article article = new Article();
         article.setTitle(title);
         article.setLede(lede);
         article.setText(text);
-        article.setContent(content);
+//        article.setContent(content);
         articleRepository.save(article);
     }
 

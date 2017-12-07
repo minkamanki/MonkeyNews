@@ -1,11 +1,11 @@
 package uutiset.domain;
 
 import java.util.List;
-import javax.persistence.Basic;
+//import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
+//import javax.persistence.FetchType;
+//import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,9 +24,9 @@ public class Article extends AbstractPersistable<Long> {
     private String text;
     @ManyToMany
     private List<Author> authors;
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] content;
+//    @Lob
+//    @Basic(fetch = FetchType.LAZY)
+//    private byte[] content;
     @ManyToMany(mappedBy = "articles")
     private List<Category> categories;
 }

@@ -1,6 +1,6 @@
 package uutiset.controller;
 
-import java.io.IOException;
+//import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.multipart.MultipartFile;
 import uutiset.service.ArticleService;
 
 @Controller
@@ -26,8 +26,8 @@ public class ArticleController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String add(@RequestParam String title, @RequestParam String lede, @RequestParam String text, @RequestParam("file") MultipartFile file) throws IOException {
-        articleService.add(title, lede, text, file.getBytes());
+    public String add(@RequestParam String title, @RequestParam String lede, @RequestParam String text){ //, @RequestParam("file") MultipartFile file) throws IOException 
+        articleService.add(title, lede, text); //, file.getBytes()
         return "redirect:/articles";
     }
 
