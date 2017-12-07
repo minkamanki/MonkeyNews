@@ -32,7 +32,7 @@ public class CategoryController {
     @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.GET)
     public String view(Model model, @PathVariable(value = "categoryId") Long categoryId) {
         model.addAttribute("category", categoryService.findById(categoryId));
-        model.addAttribute("articles", articleService.listArticlesWithout(categoryId));
+        model.addAttribute("articles", articleService.listArticlesWithoutThisCategory(categoryId));
         return "category";
     }
  

@@ -34,7 +34,7 @@ public class AuthorController {
     @RequestMapping(value = "/authors/{authorId}", method = RequestMethod.GET)
     public String view(Model model, @PathVariable(value = "authorId") Long authorId) {
         model.addAttribute("author", authorService.findById(authorId));
-        model.addAttribute("articles", articleService.listArticlesWithout(authorId));
+        model.addAttribute("articles", articleService.listArticlesWithoutThisAuthor(authorId));
         return "author";
     }
  

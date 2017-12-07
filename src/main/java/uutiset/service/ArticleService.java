@@ -8,6 +8,7 @@ import uutiset.domain.Article;
 import uutiset.domain.Author;
 import uutiset.repository.ArticleRepository;
 import uutiset.repository.AuthorRepository;
+import uutiset.repository.CategoryRepository;
 
 @Service
 public class ArticleService {
@@ -16,6 +17,8 @@ public class ArticleService {
     private ArticleRepository articleRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public Iterable<Article> list() {
         return articleRepository.findAll();
@@ -47,10 +50,16 @@ public class ArticleService {
     }
 
     @Transactional(readOnly = true)
-    public List<Article> listArticlesWithout(Long authorId) {
+    public List<Article> listArticlesWithoutThisAuthor(Long authorId) {
         List<Article> without = articleRepository.findAll();
         without.removeAll(authorRepository.getOne(authorId).getArticles());
 
+        return without;
+    }
+
+    public Object listArticlesWithoutThisCategory(Long categoryId) {
+        List<Article> without = articleRepository.findAll();
+        without.removeAll(categoryRepository.getOne(categoryId).getArticles());
         return without;
     }
 }

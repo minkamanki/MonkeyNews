@@ -14,11 +14,17 @@
 
             <span th:text="${article.lede}">Lead paragraph</span><br> </br>
 
-             <img th:src="@{/{id}/content(id=${article.id})}"/><br> </br>
+            <img th:src="@{/{id}/content(id=${article.id})}"/><br> </br>
 
         </p>    
-        <span>Authors</span>
-        <ol><li th:each="author : ${article.authors}" th:text="${author.name}">Author</li></ol>
+        <span>Authors:</span>
+        <ul>
+            <li th:each="author : ${article.authors}" th:text="${author.name}">author</li>
+        </ul>
 
+        <span>Categories</span>
+        <ul>
+            <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
+        </ul>
     </body>
 </html>
