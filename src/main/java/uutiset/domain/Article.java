@@ -20,8 +20,7 @@ public class Article extends AbstractPersistable<Long> {
 
     private String title;
     private String lede;
-    @Column(length = 1000000)
-    @Lob
+    @Column(length = 10000)
     private String text;
     @ManyToMany
     private List<Author> authors;
