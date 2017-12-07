@@ -8,11 +8,9 @@
     </head>
     <body>
         <h1><span th:text="${article.title}">Title</span></h1>
-
+        <h2><span th:text="${article.lede}">Lead paragraph</span></h2>
         <p>
             <span th:text="${article.text}">article</span> <br> </br>
-
-            <span th:text="${article.lede}">Lead paragraph</span><br> </br>
 
             <!--<img th:src="@{/{id}/content(id=${article.id})}"/><br> </br>-->
 
