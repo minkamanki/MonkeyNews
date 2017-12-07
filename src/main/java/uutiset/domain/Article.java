@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 //import javax.persistence.FetchType;
-//import javax.persistence.Lob;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,8 @@ public class Article extends AbstractPersistable<Long> {
 
     private String title;
     private String lede;
-    @Column(length = 10000)
+    @Column(length = 100000)
+    @Lob
     private String text;
     @ManyToMany
     private List<Author> authors;
