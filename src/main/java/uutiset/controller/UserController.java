@@ -23,7 +23,7 @@ public class UserController {
     public String list(Model model) {
         model.addAttribute("articles", articleService.list());
         model.addAttribute("categories", categoryService.list());
-        model.addAttribute("categoryName", "News");
+        model.addAttribute("categoryName", "MonkeyNews");
         return "monkeynews";
     }
 
