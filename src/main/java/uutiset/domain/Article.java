@@ -25,7 +25,7 @@ public class Article extends AbstractPersistable<Long> {
     @ManyToMany
     private List<Author> authors;
 //    @Lob
-     @Column(length = 10000000)
+    @Column(length = 10000000)
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
     @ManyToMany(mappedBy = "articles")
