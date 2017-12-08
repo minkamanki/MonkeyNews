@@ -69,6 +69,7 @@ public class ArticleService {
         return without;
     }
 
+    @Transactional
     public Object listArticlesWithoutThisCategory(Long categoryId) {
         List<Article> without = articleRepository.findAll();
         without.removeAll(categoryRepository.getOne(categoryId).getArticles());

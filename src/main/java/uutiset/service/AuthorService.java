@@ -15,7 +15,7 @@ public class AuthorService {
     private AuthorRepository authorRepository;
     @Autowired
     private ArticleRepository articleRepository;
-
+    
     public Iterable<Author> list() {
         return authorRepository.findAll();
     }
@@ -47,7 +47,8 @@ public class AuthorService {
         author.getArticles().add(article);
         article.getAuthors().add(author);
     }
-
+    
+    @Transactional
     public Author findById(Long authorId) {
         return authorRepository.getOne(authorId);
     }

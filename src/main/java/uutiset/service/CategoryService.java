@@ -47,7 +47,8 @@ public class CategoryService {
         category.getArticles().add(article);
         article.getCategories().add(category);
     }
-
+    
+    @Transactional
     public Category findById(Long categoryId) {
         return categoryRepository.getOne(categoryId);
     }

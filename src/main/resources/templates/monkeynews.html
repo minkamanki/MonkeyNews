@@ -12,6 +12,8 @@
             <li th:each="article :${articles}">
                 <a th:href="@{/articles/{id}(id=${article.id})}">
                     <span th:text="${article.title}">Title</span></a>
+                <br/>
+                <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
             </li>
         </ol>
         <h2>Categories</h2>
@@ -21,7 +23,7 @@
                     <span th:text="${category.name}">Category</span></a>
             </li>
         </ol>
-        
+
         <a href="/home">Homepage</a><br/>
         <a href="/articles">Add news</a><br/>
     </body>
