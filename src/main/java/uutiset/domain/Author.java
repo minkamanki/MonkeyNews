@@ -19,7 +19,5 @@ public class Author extends AbstractPersistable<Long> {
 
     private String name;
     @ManyToMany(mappedBy = "authors")
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
     private List<Article> articles; 
 }

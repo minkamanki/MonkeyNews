@@ -19,7 +19,7 @@
         <h2>Categories</h2>
         <ol>
             <li th:each="category :${categories}">
-                <a th:href="@{/home/{categoryId}(categoryId=${category.id})}">
+                <a th:href="@{/home/{category}(category=${category.name})}">
                     <span th:text="${category.name}">Category</span></a>
             </li>
         </ol>

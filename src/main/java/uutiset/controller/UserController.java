@@ -27,12 +27,12 @@ public class UserController {
         return "monkeynews";
     }
 
-    @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
-    public String categories(Model model, @PathVariable Long categoryId) {
-        Category c = categoryService.findById(categoryId);
-        model.addAttribute("articles", c.getArticles());
+    @RequestMapping(value = "/{category}", method = RequestMethod.GET)
+    public String categories(Model model, @PathVariable String category) {
+        articleService.findByCategory(category);
+        model.addAttribute("articles", articleService.findByCategory(category));
         model.addAttribute("categories", categoryService.list());
-        model.addAttribute("categoryName", c.getName());
+        model.addAttribute("categoryName", category);
         return "monkeynews";
     }
 

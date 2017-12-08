@@ -1,5 +1,6 @@
 package uutiset.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ArticleService {
     @Autowired
     private PictureRepository pictureRepository;
 
-    public Iterable<Article> list() {
+    public List<Article> list() {
         return articleRepository.findAll();
     }
 
@@ -74,5 +75,19 @@ public class ArticleService {
         List<Article> without = articleRepository.findAll();
         without.removeAll(categoryRepository.getOne(categoryId).getArticles());
         return without;
+    }
+
+    public  List<Article>  findByCategory(String name) {
+        List<Article> articles = list();
+        List<Article> articlesWhitCategory = new ArrayList<>(); 
+        for(Article a : articles){
+            List<Category> gategories = a.getCategories();
+            for(Category g : gategories){
+                if (g.getName().equals(name)){
+                    articlesWhitCategory.add(a);
+                }
+            }
+        }
+        return articlesWhitCategory;
     }
 }

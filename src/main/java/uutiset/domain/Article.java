@@ -27,8 +27,6 @@ public class Article extends AbstractPersistable<Long> {
     @ManyToMany
     private List<Author> authors;
     @OneToOne
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
     private Picture content;
     @ManyToMany(mappedBy = "articles")
     private List<Category> categories;
