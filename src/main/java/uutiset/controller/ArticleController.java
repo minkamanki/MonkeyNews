@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import uutiset.domain.Article;
+import uutiset.domain.Picture;
 import uutiset.service.ArticleService;
 
 @Controller
@@ -46,16 +47,16 @@ public class ArticleController {
         return "article";
     }
 
-    @RequestMapping(value = "/{id}/content", method = RequestMethod.GET)
+    @RequestMapping(value = "/{articleId}/picture", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<byte[]> viewFile(@PathVariable Long id) {
-        Article fo = articleService.findById(id);
-
+    public ResponseEntity<byte[]> viewFile(@PathVariable Long articleId) {
+        Article a = articleService.findById(articleId);
+        Picture picture = a.getContent();
 //        final HttpHeaders headers = new HttpHeaders();
 ////        headers.setContentType(MediaType.parseMediaType(fo.getContentType()));
 //        headers.add("Content-Disposition", "attachment; filename=" + articleId);
 
-        return new ResponseEntity<>(fo.getContent(), HttpStatus.CREATED);
+        return new ResponseEntity<>(picture.getContent(), HttpStatus.CREATED);
     }
     
 //    

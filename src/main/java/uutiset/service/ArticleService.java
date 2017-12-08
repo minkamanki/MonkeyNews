@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import uutiset.domain.Article;
 import uutiset.domain.Author;
 import uutiset.domain.Category;
+import uutiset.domain.Picture;
 import uutiset.repository.ArticleRepository;
 import uutiset.repository.AuthorRepository;
 import uutiset.repository.CategoryRepository;
+import uutiset.repository.PictureRepository;
 
 @Service
 public class ArticleService {
@@ -20,19 +22,26 @@ public class ArticleService {
     private AuthorRepository authorRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private PictureRepository pictureRepository;
 
     public Iterable<Article> list() {
         return articleRepository.findAll();
     }
 
     @Transactional
-    public void add(String title, String lede, String text, byte[] content) { // 
+    public void add(String title, String lede, String text, byte[] content) {
+        Picture p = new Picture();
+        p.setContent(content);
+        
         Article article = new Article();
         article.setTitle(title);
         article.setLede(lede);
         article.setText(text);
-        article.setContent(content);
-        articleRepository.save(article);
+        article.setContent(p);
+        
+        pictureRepository.save(p);
+        articleRepository.save(article);        
     }
 
     @Transactional
