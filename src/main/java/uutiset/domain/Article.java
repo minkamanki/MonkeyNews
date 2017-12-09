@@ -32,5 +32,5 @@ public class Article extends AbstractPersistable<Long> {
     private Picture content;
     @ManyToMany(mappedBy = "articles")
     private List<Category> categories;
-//    private int readCount;
+    private int readCount;
 }
