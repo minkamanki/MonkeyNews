@@ -52,18 +52,8 @@ public class ArticleController {
     public ResponseEntity<byte[]> viewFile(@PathVariable Long articleId) {
         Article a = articleService.findById(articleId);
         Picture picture = a.getContent();
-//        final HttpHeaders headers = new HttpHeaders();
-////        headers.setContentType(MediaType.parseMediaType(fo.getContentType()));
-//        headers.add("Content-Disposition", "attachment; filename=" + articleId);
-
         return new ResponseEntity<>(picture.getContent(), HttpStatus.CREATED);
     }
     
-//    
-//       @RequestMapping(value = "/{id}/content", produces = "image/gif")
-//    @ResponseBody
-//    public byte[] getContent(@PathVariable Long id) {
-//        return gifRepository.getOne(id).getContent();
-//    }
 
 }

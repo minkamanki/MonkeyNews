@@ -1,8 +1,11 @@
 package uutiset.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uutiset.domain.Article;
@@ -39,8 +42,8 @@ public class ArticleService {
         article.setTitle(title);
         article.setLede(lede);
         article.setText(text);
-        article.setContent(p);
-        
+        article.setContent(p); 
+        article.setDate(new Date());
         pictureRepository.save(p);
         articleRepository.save(article);        
     }
@@ -90,4 +93,9 @@ public class ArticleService {
         }
         return articlesWhitCategory;
     }
+
+    public List<Article> listHomePage() {
+        return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.DESC, "date")).getContent();
+    }
 }
+ 

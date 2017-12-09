@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import uutiset.domain.Category;
 import uutiset.service.ArticleService;
 import uutiset.service.CategoryService;
 
@@ -21,7 +20,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("articles", articleService.list());
+        model.addAttribute("articles", articleService.listHomePage());
         model.addAttribute("categories", categoryService.list());
         model.addAttribute("categoryName", "MonkeyNews");
         return "monkeynews";

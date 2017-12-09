@@ -1,5 +1,6 @@
 package uutiset.domain;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data
 @Entity
 public class Article extends AbstractPersistable<Long> {
-
+    private Date date;
     private String title;
     private String lede;
     @Column(length = 100000)

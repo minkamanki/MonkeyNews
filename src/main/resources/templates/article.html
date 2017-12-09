@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
@@ -8,6 +9,7 @@
     </head>
     <body>
         <h1><span th:text="${article.title}">Title</span></h1>
+        <span th:text="${article.date}">Date</span>
         <h2><span th:text="${article.lede}">Lead paragraph</span></h2>
         <p>
             <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>

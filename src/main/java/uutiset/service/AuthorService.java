@@ -2,6 +2,7 @@ package uutiset.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uutiset.domain.Author;
@@ -16,7 +17,7 @@ public class AuthorService {
     private AuthorRepository authorRepository;
     @Autowired
     private ArticleRepository articleRepository;
-    
+
     public List<Author> list() {
         return authorRepository.findAll();
     }
@@ -48,9 +49,22 @@ public class AuthorService {
         author.getArticles().add(article);
         article.getAuthors().add(author);
     }
-    
+
     @Transactional
     public Author findById(Long authorId) {
         return authorRepository.getOne(authorId);
+    }
+
+    public Author findByUsername(String username) {
+        for (Author author : authorRepository.findAll()) {
+            if (author.getName().equals(username)) {
+                return author;
+            }
+        }
+        return null;
+    }
+
+    public Author save(Author user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
