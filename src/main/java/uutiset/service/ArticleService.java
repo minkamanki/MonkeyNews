@@ -85,7 +85,7 @@ public class ArticleService {
     }
 
     public List<Article> mostReadArticles() {
-        return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.ASC, "readCount")).getContent();
+        return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.DESC, "readCount")).getContent();
     }
 
 }
