@@ -32,7 +32,6 @@ public class CategoryController {
     @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.GET)
     public String view(Model model, @PathVariable(value = "categoryId") Long categoryId) {
         model.addAttribute("category", categoryService.findById(categoryId));
-        model.addAttribute("articles", articleService.listArticlesWithoutThisCategory(categoryId));
         return "category";
     }
  
@@ -42,11 +41,5 @@ public class CategoryController {
         return "redirect:/categories";
     }
  
-    @RequestMapping(value = "/categories/{categoryId}/articles", method = RequestMethod.POST)
-    public String addCategoryToArticle(@PathVariable(value = "categoryId") Long categoryId,
-            @RequestParam(value = "articleId") Long articleId) {
-        categoryService.addCategoryToArticle(categoryId, articleId);
-        return "redirect:/categories";
-    }
 
 }

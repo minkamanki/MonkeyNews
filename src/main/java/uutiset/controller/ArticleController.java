@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import uutiset.domain.Article;
 import uutiset.domain.Picture;
 import uutiset.service.ArticleService;
+import uutiset.service.AuthorService;
+import uutiset.service.CategoryService;
 
 @Controller
 @RequestMapping("articles")
@@ -22,10 +24,15 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private AuthorService authorService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("articles", articleService.list());
+        model.addAttribute("athors", authorService.list());
         return "articles";
     }
 
@@ -43,6 +50,8 @@ public class ArticleController {
 
     @RequestMapping(value = "/{articleId}", method = RequestMethod.GET)
     public String findOne(Model model, @PathVariable Long articleId) {
+        model.addAttribute("authors", authorService.findOtherAuthors(articleId));
+        model.addAttribute("categories", categoryService.findOtherCategories(articleId));
         model.addAttribute("article", articleService.findById(articleId));
         return "article";
     }
@@ -54,6 +63,18 @@ public class ArticleController {
         Picture picture = a.getContent();
         return new ResponseEntity<>(picture.getContent(), HttpStatus.CREATED);
     }
-    
+
+    @RequestMapping(value = "/{articleId}/category", method = RequestMethod.POST)
+    public String addCategoryToArticle(@PathVariable(value = "articleId") Long articleId,
+            @RequestParam(value = "categoryId") Long categoryId) {
+        categoryService.addCategoryToArticle(categoryId, articleId);
+        return "redirect:/articles/" + articleId;
+    }
+    @RequestMapping(value = "/{articleId}/author", method = RequestMethod.POST)
+    public String addAuthorToArticle(@PathVariable(value = "articleId") Long articleId,
+            @RequestParam(value = "authorId") Long authorId) {
+        authorService.addAuthorToArticle(authorId, articleId);
+        return "redirect:/articles/" + articleId;
+    }
 
 }

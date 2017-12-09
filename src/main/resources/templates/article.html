@@ -16,16 +16,39 @@
             <br/>
             <span th:text="${article.text}">article</span> 
         </p>    
+
+
+        <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(authors)}">
+            <h3>Add author to article</h3>
+
+            <form method="POST" th:action="@{/articles/{articleId}/author(articleId=${article.id})}">
+                <select name="authorId">
+                    <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}">author</option>
+                </select>
+                <input type="submit" value="Assign" id="add-to-article"/>
+            </form>
+        </div>
+
         <span>Authors:</span>
         <ul>
             <li th:each="author : ${article.authors}" th:text="${author.name}">author</li>
         </ul>
 
+        <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(categories)}">
+            <h3>Add category to article</h3>
+
+            <form method="POST" th:action="@{/articles/{articleId}/category(articleId=${article.id})}">
+                <select name="categoryId">
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">category</option>
+                </select>
+                <input type="submit" value="Assign" id="add-to-article"/>
+            </form>
+        </div>
+
         <span>Categories</span>
         <ul>
             <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
         </ul>
-        
         <a href="/home">Back to homepage</a><br/>
     </body>
 </html>

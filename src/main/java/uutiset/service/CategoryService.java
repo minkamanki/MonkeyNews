@@ -41,9 +41,9 @@ public class CategoryService {
     }
 
     @Transactional
-    public void addCategoryToArticle(Long categoryId, Long actorId) {
+    public void addCategoryToArticle(Long categoryId, Long articleId) {
         Category category = categoryRepository.getOne(categoryId);
-        Article article = articleRepository.getOne(actorId);
+        Article article = articleRepository.getOne(articleId);
 
         category.getArticles().add(article);
         article.getCategories().add(category);
@@ -54,4 +54,10 @@ public class CategoryService {
         return categoryRepository.getOne(categoryId);
     }
 
+    @Transactional(readOnly = true)
+    public List<Category> findOtherCategories(Long articleId) {
+        List<Category> without = categoryRepository.findAll();
+        without.removeAll(articleRepository.getOne(articleId).getCategories());
+        return without;
+    }
 }

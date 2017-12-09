@@ -55,6 +55,7 @@ public class AuthorService {
         return authorRepository.getOne(authorId);
     }
 
+    @Transactional
     public Author findByUsername(String username) {
         for (Author author : authorRepository.findAll()) {
             if (author.getName().equals(username)) {
@@ -64,7 +65,11 @@ public class AuthorService {
         return null;
     }
 
-    public Author save(Author user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional(readOnly = true)
+    public List<Author> findOtherAuthors(Long articleId) {
+        List<Author> without = authorRepository.findAll();
+        without.removeAll(articleRepository.getOne(articleId).getAuthors());
+        return without;
     }
 }
+
