@@ -44,7 +44,7 @@ public class ArticleService {
         article.setText(text);
         article.setContent(p); 
         article.setDate(new Date());
-        article.setReadCount(0); 
+//        article.setReadCount(0); 
         pictureRepository.save(p);
         articleRepository.save(article);        
     }
@@ -88,10 +88,4 @@ public class ArticleService {
         return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.ASC, "readCount")).getContent();
     }
 
-    public void removeAll() {
-        articleRepository.deleteAll();
-    }
-
-
 }
- 
