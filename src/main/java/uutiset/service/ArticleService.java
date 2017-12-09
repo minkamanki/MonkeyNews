@@ -66,21 +66,6 @@ public class ArticleService {
         articleRepository.delete(article);
     }
 
-//    @Transactional(readOnly = true)
-//    public List<Article> listArticlesWithoutThisAuthor(Long authorId) {
-//        List<Article> without = articleRepository.findAll();
-//        without.removeAll(authorRepository.getOne(authorId).getArticles());
-//
-//        return without;
-//    }
-//
-//    @Transactional
-//    public Object listArticlesWithoutThisCategory(Long categoryId) {
-//        List<Article> without = articleRepository.findAll();
-//        without.removeAll(categoryRepository.getOne(categoryId).getArticles());
-//        return without;
-//    }
-
     public  List<Article>  findByCategory(String name) {
         List<Article> articles = list();
         List<Article> articlesWhitCategory = new ArrayList<>(); 
@@ -97,6 +82,10 @@ public class ArticleService {
 
     public List<Article> listHomePage() {
         return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.DESC, "date")).getContent();
+    }
+
+    public List<Article> mostReadArticles() {
+        return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.ASC, "readCount")).getContent();
     }
 
 

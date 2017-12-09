@@ -3,10 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>MonkeyNews</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     </head>
+
     <body>
+
+        <h1>MonkeyNews</h1>
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+            <li  class="nav-item" th:each="category :${categories}">
+                <a class="nav-link" th:href="@{/home/{category}(category=${category.name})}">
+                    <span th:text="${category.name}">Category</span></a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/home/mostRead">Most read this week!</a></li>
+        </ul>
+
         <h1><span th:text="${categoryName}">News</span></h1>
         <ol>
             <li th:each="article :${articles}">
@@ -16,16 +31,17 @@
                 <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
             </li>
         </ol>
-        <h2>Categories</h2>
-        <ol>
-            <li th:each="category :${categories}">
-                <a th:href="@{/home/{category}(category=${category.name})}">
-                    <span th:text="${category.name}">Category</span></a>
-            </li>
-        </ol>
 
+        <!--<a th:href="@{/home/mostRead)}">Most read this week!</a>-->
         <a href="/home">Homepage</a><br/>
         <a href="/articles">Add news</a><br/>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
     </body>
 </html>
 

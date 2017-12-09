@@ -34,5 +34,10 @@ public class UserController {
         model.addAttribute("categoryName", category);
         return "monkeynews";
     }
-
+    @RequestMapping(value = "/mostRead", method = RequestMethod.GET)
+    public String mostRead(Model model) {
+        model.addAttribute("articles", articleService.mostReadArticles());
+        model.addAttribute("categoryName", "Most read news this week!");
+        return "monkeynews";
+    }
 }
