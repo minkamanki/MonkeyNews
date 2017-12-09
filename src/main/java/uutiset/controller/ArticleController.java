@@ -50,7 +50,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/{articleId}", method = RequestMethod.GET)
     public String findOne(Model model, @PathVariable Long articleId) {
-//        articleService.findById(articleId).setReadCount(articleService.findById(articleId).getReadCount() + 1);
+        articleService.findById(articleId).setReadCount(articleService.findById(articleId).getReadCount() + 1);
         model.addAttribute("authors", authorService.findOtherAuthors(articleId));
         model.addAttribute("categories", categoryService.findOtherCategories(articleId));
         model.addAttribute("article", articleService.findById(articleId));
