@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data
 @Entity
 public class Category extends AbstractPersistable<Long>{
+    
     private String name;
     @ManyToMany
     private List<Article> articles;

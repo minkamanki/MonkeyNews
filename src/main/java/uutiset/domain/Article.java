@@ -20,6 +20,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Data
 @Entity
 public class Article extends AbstractPersistable<Long> {
+
     private Date date;
     private String title;
     private String lede;
@@ -31,4 +32,5 @@ public class Article extends AbstractPersistable<Long> {
     private Picture content;
     @ManyToMany(mappedBy = "articles")
     private List<Category> categories;
+    private int readCount;
 }

@@ -16,7 +16,7 @@
             <br/>
             <span th:text="${article.text}">article</span> 
         </p>    
-
+        <p>Read <span th:text="${article.readCount}"></span> times</p>
 
         <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(authors)}">
             <h3>Add author to article</h3>
