@@ -79,7 +79,7 @@ public class ArticleController {
         return "redirect:/articles/" + articleId;
     }
 
-    @RequestMapping(value = "/deleteall", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteall")
     public String deleteAll() {
         articleService.removeAll();
         return "redirect:/";
