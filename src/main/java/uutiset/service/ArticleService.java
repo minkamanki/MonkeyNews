@@ -88,6 +88,10 @@ public class ArticleService {
         return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.ASC, "readCount")).getContent();
     }
 
+    public void removeAll() {
+        articleRepository.deleteAll();
+    }
+
 
 }
  
