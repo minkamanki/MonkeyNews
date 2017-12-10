@@ -1,6 +1,7 @@
 package uutiset.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class ArticleService {
         articleRepository.save(article);
     }
 
-    //Etsitään id:llä.
+    //Etsitään id:llä. 
     @Transactional
     public Article findById(Long id) {
         return articleRepository.findById(id).get();
@@ -72,16 +73,17 @@ public class ArticleService {
     //Etsitään kategorian nimen perusteella artikkelit.
     public List<Article> findByCategory(String name) {
         List<Article> articles = list();
-        List<Article> articlesWhitCategory = new ArrayList<>();
+        List<Article> articlesWithCategory = new ArrayList<>();
         for (Article a : articles) {
             List<Category> gategories = a.getCategories();
             for (Category g : gategories) {
                 if (g.getName().equals(name)) {
-                    articlesWhitCategory.add(a);
+                    articlesWithCategory.add(a);
                 }
             }
         }
-        return articlesWhitCategory;
+        Collections.sort(articlesWithCategory, (a,b) -> b.getDate().compareTo(a.getDate()));
+        return articlesWithCategory;
     }
 
     //Listaus etusivulle menevistä artikkeleista: viisi uusinta.
