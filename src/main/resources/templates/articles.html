@@ -58,13 +58,8 @@
                         <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
                     </ul>
 
-                    <form th:action="@{/articles/{articleId}/edit(articleId=${article.id})}" th:method="GET">                                         ´            
-                        <input type="submit" value="Edit article"/>
-                    </form>
-                        
-                    <form th:action="@{/articles/{articleId}(articleId=${article.id})}" th:method="DELETE">                                         ´            
-                        <input type="submit" value="Remove article"/>
-                    </form><br/>
+                    <form th:action="@{/articles/{articleId}/edit(articleId=${article.id})}" th:method="GET"><input type="submit" value="Edit article"/></form>                        
+                    <form th:action="@{/articles/{articleId}(articleId=${article.id})}" th:method="DELETE"><input type="submit" value="Remove article"/></form><br/>
                 </li>
             </ul>
 
