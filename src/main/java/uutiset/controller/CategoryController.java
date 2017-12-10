@@ -10,36 +10,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 import uutiset.domain.Category;
 import uutiset.service.ArticleService;
 import uutiset.service.CategoryService;
-
+//Polussa /categories tapahtuvat get, post ja deleta pyynnöt.
 @Controller
+@RequestMapping("categories")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
     @Autowired
     private ArticleService articleService;
-
-    @RequestMapping(value = "/categories", method = RequestMethod.GET)
+    
+    //Listataan kategoriat sivulle categories.html.
+    @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("categories", categoryService.list());
         return "categories";
     }
 
-    @RequestMapping(value = "/categories", method = RequestMethod.POST)
+    //Tallennetaan uuden kategorian tiedot.
+    @RequestMapping(method = RequestMethod.POST)
     public String add(@RequestParam String name, @RequestParam(required = false) String nav) {
         categoryService.add(name, nav);
         return "redirect:/categories";
     }
 
-    @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.GET)
+    //Esituys yhedelle kategorialla sivulla category.html.
+    @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
     public String view(Model model, @PathVariable(value = "categoryId") Long categoryId) {
         Category category = categoryService.findById(categoryId);
         model.addAttribute("category", category);
         model.addAttribute("articles", articleService.findByCategory(category.getName()));
         return "category";
     }
-
-    @RequestMapping(value = "/categories/{categoryId}", method = RequestMethod.DELETE)
+    
+    //Poistetaan id:tä vastaava kategoria.
+    @RequestMapping(value = "/{categoryId}", method = RequestMethod.DELETE)
     public String remove(@PathVariable(value = "categoryId") Long categoryId) {
         categoryService.remove(categoryId);
         return "redirect:/categories";

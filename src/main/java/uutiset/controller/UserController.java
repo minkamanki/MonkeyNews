@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import uutiset.service.ArticleService;
 import uutiset.service.CategoryService;
-
+//Tässä kontrollerissa hoidetaan /home polussa tapahtuvat get, pot ja delete pyynnöt.
 @Controller
 @RequestMapping("home")
 public class UserController {
@@ -17,7 +17,8 @@ public class UserController {
     private ArticleService articleService;
     @Autowired
     private CategoryService categoryService;
-
+    
+    //Artikkelien listaus etusivulle.
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("articles", articleService.listHomePage());
@@ -26,6 +27,7 @@ public class UserController {
         return "monkeynews";
     }
 
+    //Artikkelien listaus tietyn kategorian sivulle.
     @RequestMapping(value = "/{category}", method = RequestMethod.GET)
     public String categories(Model model, @PathVariable String category) {
         articleService.findByCategory(category);
@@ -35,6 +37,7 @@ public class UserController {
         return "monkeynews";
     }
 
+    //Artikkelien listaus eniten luettut sivulle.
     @RequestMapping(value = "/mostRead", method = RequestMethod.GET)
     public String mostRead(Model model) {
         model.addAttribute("articles", articleService.mostReadArticles());
@@ -43,6 +46,7 @@ public class UserController {
         return "monkeynews";
     }
 
+    //Artikkelien listaus uusimmat sivulle.
     @RequestMapping(value = "/newest", method = RequestMethod.GET)
     public String newest(Model model) {
         model.addAttribute("articles", articleService.newestArticles());

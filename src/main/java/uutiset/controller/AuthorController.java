@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import uutiset.service.ArticleService;
 import uutiset.service.AuthorService;
-
+//Polussa /authors tapahtuvat get, post ja deleta pyynnöt.
 @Controller
+@RequestMapping("authors")
 public class AuthorController {
 
     @Autowired
@@ -18,26 +19,30 @@ public class AuthorController {
     @Autowired
     private ArticleService articleService;
 
-    @RequestMapping(value = "/authors", method = RequestMethod.GET)
+    //Listataan authors.html sivulle kaikki kirjoittajat.
+    @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("authors", authorService.list());
         return "authors";
     }
 
-    @RequestMapping(value = "/authors", method = RequestMethod.POST)
+    //Otetaan vastaan uuden kirjottajan tiedot.
+    @RequestMapping(method = RequestMethod.POST)
     public String add(@RequestParam String name) {
         authorService.add(name);
         return "redirect:/authors";
     }
 
-    @RequestMapping(value = "/authors/{authorId}", method = RequestMethod.GET)
+    //Tiedot yhden kirjoittajan sivulle, author.html:sivulle.
+    @RequestMapping(value = "/{authorId}", method = RequestMethod.GET)
     public String view(Model model, @PathVariable(value = "authorId") Long authorId) {
         model.addAttribute("author", authorService.findById(authorId));
         model.addAttribute("articles", articleService.findByAuthor(authorId));
         return "author";
     }
 
-    @RequestMapping(value = "/authors/{authorId}", method = RequestMethod.DELETE)
+    //Poistetaan kirjoittaja id:n perusteella.
+    @RequestMapping(value = "/{authorId}", method = RequestMethod.DELETE)
     public String remove(@PathVariable(value = "authorId") Long authorId) {
         authorService.remove(authorId);
         return "redirect:/authors";
