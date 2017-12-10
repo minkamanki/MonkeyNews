@@ -1,5 +1,6 @@
 package uutiset.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import uutiset.repository.CategoryRepository;
 
 @Service
 public class CategoryService {
-    
+
     @Autowired
     private CategoryRepository categoryRepository;
     @Autowired
@@ -21,10 +22,27 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public List<Category> listForNav() {
+
+        List<Category> navCategories = new ArrayList<>();
+        for (Category c : categoryRepository.findAll()) {
+            if (c.isNav()) {
+                navCategories.add(c);
+            }
+        }
+
+        return navCategories;
+    }
+
     @Transactional
-    public void add(String name) {
+    public void add(String name, String checkbox) {
         Category category = new Category();
         category.setName(name);
+        if (checkbox != null) {
+            category.setNav(true);
+        } else {
+            category.setNav(false);
+        }
 
         categoryRepository.save(category);
 
@@ -48,7 +66,7 @@ public class CategoryService {
         category.getArticles().add(article);
         article.getCategories().add(category);
     }
-    
+
     @Transactional
     public Category findById(Long categoryId) {
         return categoryRepository.getOne(categoryId);

@@ -21,7 +21,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
         model.addAttribute("articles", articleService.listHomePage());
-        model.addAttribute("categories", categoryService.list());
+        model.addAttribute("categories", categoryService.listForNav());
         model.addAttribute("categoryName", "MonkeyNews");
         return "monkeynews";
     }
@@ -30,13 +30,14 @@ public class UserController {
     public String categories(Model model, @PathVariable String category) {
         articleService.findByCategory(category);
         model.addAttribute("articles", articleService.findByCategory(category));
-        model.addAttribute("categories", categoryService.list());
+        model.addAttribute("categories", categoryService.listForNav());
         model.addAttribute("categoryName", category);
         return "monkeynews";
     }
     @RequestMapping(value = "/mostRead", method = RequestMethod.GET)
     public String mostRead(Model model) {
-        model.addAttribute("articles", articleService.mostReadArticles());
+        model.addAttribute("articles", articleService.mostReadArticles());        
+        model.addAttribute("categories", categoryService.listForNav());
         model.addAttribute("categoryName", "Most read news this week!");
         return "monkeynews";
     }

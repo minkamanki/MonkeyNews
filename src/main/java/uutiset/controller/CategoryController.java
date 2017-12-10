@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import uutiset.service.ArticleService;
 import uutiset.service.CategoryService;
 
 @Controller
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-    @Autowired
-    private ArticleService articleService;
  
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public String list(Model model) {
@@ -24,8 +21,8 @@ public class CategoryController {
     }
  
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
-    public String add(@RequestParam String name) {
-        categoryService.add(name);
+    public String add(@RequestParam String name, @RequestParam(required=false) String nav) {
+        categoryService.add(name, nav);
         return "redirect:/categories";
     }
  
