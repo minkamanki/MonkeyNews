@@ -77,8 +77,9 @@
             </ul>
 
             <div sec:authorize="hasRole('USER')">
-                <a th:href="@{/articles/{articleId}/edit(articleId=${article.id})}">Edit this article</a> <br>                   
-            
+                <form th:action="@{/articles/{articleId}/edit(articleId=${article.id})}" th:method="GET">                                         ´            
+                    <input type="submit" value="Edit article"/>
+                </form>
                 <form th:action="@{/logout}" method="POST">
                     <input type="submit" value="Logout"></input>
                 </form>
