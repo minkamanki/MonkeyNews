@@ -45,3 +45,6 @@ Uloskirjautuminen onnistuu hallintapaneelin etusivun pohjalla olevasta Logout na
 Artikkelit:<br />
 Artikkeleihin tulee automaattisesti lisäysaika, joka näkyy mitätahansa [artikkelia](http://monkeynews.herokuapp.com/articles/101) lukiessa otsikon alta. Sen ala puolella lukee myös, kuinka monta kertaa artikkelia on katsottu. Itse artikkelin tekstin alla lukee kirjoittajat sekä kategoriat.
 
+[![MonkeyNews](http://monkeynews.herokuapp.com/images/monkeynews.jpg)]
+
+
