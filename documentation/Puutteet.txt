@@ -1,0 +1,7 @@
+Puutteita ovat:
+testikattavuus (luulin vielä aamusta 10.12. että palautusta oli siirretty 18.12 asti)
+
+
+"Uutissivusto tarjoaa mahdollisuuden uutisten listaamiseen edellisen viikon aikana kertyneiden lukumäärien perusteella." 
+
+Ylläoleva ominaisuus on korvattu listaus eniten katseluita saaneille uutisille.

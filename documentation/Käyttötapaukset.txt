@@ -1,0 +1,9 @@
+Uutissivustolla on kahdenlaisia k‰ytt‰ji‰.
+Toiset ovat Authoreita ja toiset ovat lukijoita. 
+
+Authorit voivat lis‰t‰, muokkaa ja poistaa uutisia kirjautumalla sivustolle. (Tarkemmat ohjeet Kuvaukseessa.)
+He pystyv‰t liitt‰‰ valmiiseen artikkeliin kategorioita ja kirjoittajia.
+
+Lukijat voivat listata uutisia useammalla eri tavalla. Etusivulla listautuu 5 uusinta.
+Muita listaus vaihtoehtoja ovat eniten katostut ja kategorioan mukainen listaus.
+Kun lukia avaa, jonkin listatun artikkelin h‰n pystyy n‰kem‰‰n sen kaikki tiedot, joita ovat: otsikko, ingressi, artikkelin teksti, kuva, kirjoittajat, kategoriat, lis‰ysaika ja katselukerrat. Joka kerta, kun artikkeli avataan, sen katselu kerrat kasvavat  yhdell‰.

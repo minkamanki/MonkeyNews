@@ -1,0 +1,8 @@
+
+Projekti on Travisissa: https://travis-ci.org/minkamanki/MonkeyNews
+Ja myös Herokrussa: http://monkeynews.herokuapp.com/
+Projektin github on: https://github.com/minkamanki/MonkeyNews
+
+Projektissa on käytössä: spring-framework, thymeleaf ja h2-database.
+
+Projektin kieli on Java.
