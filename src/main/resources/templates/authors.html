@@ -33,16 +33,16 @@
  
         <ol>
             <li th:each="author : ${authors}">
-                <a th:href="@{/authors/{authorId}(authorId=${author.id})}" th:text="${author.name}">author name</a>
+                <span th:text="${author.name}">author name</span>
  
                 <form th:action="@{/authors/{authorId}(authorId=${author.id})}" th:method="DELETE">
                     <input type="submit" value="Remove" th:id="${'remove-' + author.id}"/>
                 </form><br/>
  
-<!--                Author of:<br/>
+                Articles:<br/>
                 <ul>
                     <li th:each="article : ${author.articles}" th:text="${article.title}">article name</li>
-                </ul>-->
+                </ul>
             </li>
         </ol>
  
