@@ -3,8 +3,8 @@ Simple news site.
 
 [Wepa projekti](http://monkeynews.herokuapp.com/)
 
-MonkeyNewsin juuresta aukee valikko josta voi joko siirtyä selaamaan artikkeleita "Browse news" tai siirtyä hallintapaneeliin "Add news".
-Paneelisssa on myös linkki sisäänkirjautumiseen.
+MonkeyNewsin juuresta aukee valikko josta voi joko siirtyä selaamaan artikkeleita [Browse news](http://monkeynews.herokuapp.com/home) tai siirtyä hallintapaneeliin [Add news](http://monkeynews.herokuapp.com/articles/).
+Paneelisssa on myös linkki [sisäänkirjautumiseen](http://monkeynews.herokuapp.com/login]).
 Hallintapaneelin käyttö vaatii kirjautumisen. Käytössä on vain yksinkertainen kirjautminen ja ainoat tunnukset sivulle on:
 User: author
 Password: author123
