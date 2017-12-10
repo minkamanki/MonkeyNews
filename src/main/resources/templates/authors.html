@@ -30,7 +30,7 @@
  
         <h2>Existing authors</h2>
  
-        <ol>
+        <ul style="list-style-type:none">
             <li th:each="author : ${authors}">
                 <span th:text="${author.name}">author name</span>
  
@@ -43,7 +43,7 @@
                     <li th:each="article : ${author.articles}" th:text="${article.title}">article name</li>
                 </ul>-->
             </li>
-        </ol>
+        </ul>
  
         
         </div>

@@ -43,7 +43,7 @@
 
             <h2>Current Articles</h2>
 
-            <ol>
+            <ul style="list-style-type:none">
                 <li th:each="article : ${articles}">
                     <a th:href="@{/articles/{articleId}(articleId=${article.id})}" th:text="${article.title}">article title</a>
                     <form th:action="@{/articles/{articleId}(articleId=${article.id})}" th:method="DELETE">
@@ -60,7 +60,7 @@
                         <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
                     </ul>
                 </li>
-            </ol>
+            </ul>
 
 
         </div>
