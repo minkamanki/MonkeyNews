@@ -25,6 +25,8 @@ public class ArticleService {
     private ArticleRepository articleRepository;
     @Autowired
     private PictureRepository pictureRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
 
     public List<Article> list() {
         return articleRepository.findAll();
@@ -97,8 +99,20 @@ public class ArticleService {
         articleRepository.save(article);
     }
 
-    public Object newestArticles() {
-         return articleRepository.findAll(PageRequest.of(0, 30, Sort.Direction.DESC, "date")).getContent();
+    public List<Article> newestArticles() {
+        return articleRepository.findAll(PageRequest.of(0, 30, Sort.Direction.DESC, "date")).getContent();
+    }
+
+    public List<Article> findByAuthor(Long authorId) {
+        Author author = authorRepository.findById(authorId).get();
+        List< Article> articles = list();
+        List<Article> articlesWhitAuthor = new ArrayList<>();
+        for (Article article : articles) {
+            if (article.getAuthors().contains(author)) {
+                articlesWhitAuthor.add(article);
+            }
+        }
+        return articlesWhitAuthor;
     }
 
 }
