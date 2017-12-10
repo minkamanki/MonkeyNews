@@ -2,6 +2,7 @@
 Simple news site.
 
 [![Build Status](https://travis-ci.org/minkamanki/MonkeyNews.svg?branch=master)](https://travis-ci.org/minkamanki/MonkeyNews)
+[![codebeat badge](https://codebeat.co/badges/38c5af90-18d1-49af-91b4-e6c519952d24)](https://codebeat.co/projects/github-com-minkamanki-monkeynews-master)
 
 [Wepa projekti](http://monkeynews.herokuapp.com/)
 
