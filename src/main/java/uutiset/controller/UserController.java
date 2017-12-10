@@ -34,11 +34,21 @@ public class UserController {
         model.addAttribute("categoryName", category);
         return "monkeynews";
     }
+
     @RequestMapping(value = "/mostRead", method = RequestMethod.GET)
     public String mostRead(Model model) {
-        model.addAttribute("articles", articleService.mostReadArticles());        
+        model.addAttribute("articles", articleService.mostReadArticles());
         model.addAttribute("categories", categoryService.listForNav());
         model.addAttribute("categoryName", "Most read news this week!");
         return "monkeynews";
     }
+
+    @RequestMapping(value = "/newest", method = RequestMethod.GET)
+    public String newest(Model model) {
+        model.addAttribute("articles", articleService.newestArticles());
+        model.addAttribute("categories", categoryService.listForNav());
+        model.addAttribute("categoryName", "Newest");
+        return "monkeynews";
+    }
+
 }

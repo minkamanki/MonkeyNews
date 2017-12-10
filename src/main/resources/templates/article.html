@@ -6,77 +6,78 @@
         <title>MonkeyNews</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <style>
-        img {
-            max-width: 700px;
-            max-height: 700px;
-        }
-    </style>
+                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <style>
+            img {
+                max-width: 700px;
+                max-height: 700px;
+            }
+        </style>
     </head>
     <body>
-         <div class="container">
-            
-        <h1>MonkeyNews</h1>    
-        <ul class="nav">
-            <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
-            <li  class="nav-item" th:each="category :${categories}">
-                <a class="nav-link" th:href="@{/home/{category}(category=${category.name})}">
-                    <span th:text="${category.name}">Category</span></a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="/home/mostRead">Most read this week!</a></li>
-            <li class="nav-item"><a href="/articles">Edit articles</a></li>
-        </ul>
-        
-        <h1><span th:text="${article.title}">Title</span></h1>
-        <span th:text="${article.date}">Date</span><p> Read <span th:text="${article.readCount}"></span> times</p>
-        <h2><span th:text="${article.lede}">Lead paragraph</span></h2>
-        <p>
-            <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
-            <br/>
-        </p>  
-        <p style="font-family:Verdana; font-size:120%;"><span th:text="${article.text}">article</span> </p>
-        
+        <div class="container">
 
-        <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(authors)}">
-            <h3>Add author to article</h3>
+            <h1>MonkeyNews</h1>    
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/newest">Newest</a></li>
+                <li  class="nav-item" th:each="category :${categories}">
+                    <a class="nav-link" th:href="@{/home/{category}(category=${category.name})}">
+                        <span th:text="${category.name}">Category</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/home/mostRead">Most read this week!</a></li>
+                <li class="nav-item"><a href="/articles">Edit articles</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
+            </ul>
 
-            <form method="POST" th:action="@{/articles/{articleId}/author(articleId=${article.id})}">
-                <select name="authorId">
-                    <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}">author</option>
-                </select>
-                <input type="submit" value="Assign" id="add-to-article"/>
-            </form>
-        </div>
+            <h1><span th:text="${article.title}">Title</span></h1>
+            <span th:text="${article.date}">Date</span><p> Read <span th:text="${article.readCount}"></span> times</p>
+            <h2><span th:text="${article.lede}">Lead paragraph</span></h2>
+            <p>
+                <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
+                <br/>
+            </p>  
+            <p style="font-family:Verdana; font-size:120%;"><span th:text="${article.text}">article</span> </p>
 
-        <span>Authors:</span>
-        <ul style="list-style-type:none">
-            <li th:each="author : ${article.authors}" th:text="${author.name}">author</li>
-        </ul>
 
-        <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(othercategories)}">
-            <h3>Add category to article</h3>
+            <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(authors)}">
+                <h3>Add author to article</h3>
 
-            <form method="POST" th:action="@{/articles/{articleId}/category(articleId=${article.id})}">
-                <select name="categoryId">
-                    <option th:each="category : ${othercategories}" th:value="${category.id}" th:text="${category.name}">category</option>
-                </select>
-                <input type="submit" value="Assign" id="add-to-article"/>
-            </form>
-        </div>
+                <form method="POST" th:action="@{/articles/{articleId}/author(articleId=${article.id})}">
+                    <select name="authorId">
+                        <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.name}">author</option>
+                    </select>
+                    <input type="submit" value="Assign" id="add-to-article"/>
+                </form>
+            </div>
 
-        <span>Categories</span>
-        <ul style="list-style-type:none">
-            <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
-        </ul>
-        
-        <div sec:authorize="hasRole('USER')">
-        <a th:href="@{/articles/{articleId}/edit(articleId=${article.id})}">Edit this article</a> <br>
-        <a href="/articles">Edit articles</a>
-        </div>
-        
+            <span>Authors:</span>
+            <ul style="list-style-type:none">
+                <li th:each="author : ${article.authors}" th:text="${author.name}">author</li>
+            </ul>
+
+            <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(othercategories)}">
+                <h3>Add category to article</h3>
+
+                <form method="POST" th:action="@{/articles/{articleId}/category(articleId=${article.id})}">
+                    <select name="categoryId">
+                        <option th:each="category : ${othercategories}" th:value="${category.id}" th:text="${category.name}">category</option>
+                    </select>
+                    <input type="submit" value="Assign" id="add-to-article"/>
+                </form>
+            </div>
+
+            <span>Categories</span>
+            <ul style="list-style-type:none">
+                <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
+            </ul>
+
+            <div sec:authorize="hasRole('USER')">
+                <a th:href="@{/articles/{articleId}/edit(articleId=${article.id})}">Edit this article</a> <br>                   
+            </div>
+
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

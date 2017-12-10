@@ -21,11 +21,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/home").permitAll()
+                .antMatchers(HttpMethod.GET, "/home/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/articles/{articleId}/picture").permitAll()
                 .antMatchers(HttpMethod.GET, "/articles/{articleId}").permitAll()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers("/images/monkeynews.jpg").permitAll()
-                .antMatchers(HttpMethod.GET, "/home/{category}").permitAll()
                 .anyRequest().authenticated().and()
                 .formLogin().permitAll();
         http.formLogin()

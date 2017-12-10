@@ -23,10 +23,6 @@ public class ArticleService {
 
     @Autowired
     private ArticleRepository articleRepository;
-//    @Autowired
-//    private AuthorRepository authorRepository;
-//    @Autowired
-//    private CategoryRepository categoryRepository;
     @Autowired
     private PictureRepository pictureRepository;
 
@@ -99,6 +95,10 @@ public class ArticleService {
             article.getContent().setContent(bytes);
         }
         articleRepository.save(article);
+    }
+
+    public Object newestArticles() {
+         return articleRepository.findAll(PageRequest.of(0, 30, Sort.Direction.DESC, "date")).getContent();
     }
 
 }
