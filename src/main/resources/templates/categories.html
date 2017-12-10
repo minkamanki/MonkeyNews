@@ -34,8 +34,10 @@
  
         <ul style="list-style-type:none">
             <li th:each="category : ${categories}">
-                <span th:text="${category.name}">category name</span>
- 
+                <a th:href="@{/categories/{gategoryId}(gategoryId=${category.id})}" th:text="${category.name}">Category</a>
+                
+<!--                <span th:text="${category.name}">category name</span>
+ -->
                 <form th:action="@{/categories/{categoryId}(categoryId=${category.id})}" th:method="DELETE">
                     <input type="submit" value="Remove" th:id="${'remove-' + category.id}"/>
                 </form><br/>
