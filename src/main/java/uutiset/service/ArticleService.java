@@ -31,7 +31,9 @@ public class ArticleService {
     
     //Listataan artikkelit.
     public List<Article> list() {
-        return articleRepository.findAll();
+        List<Article> articles = articleRepository.findAll();
+        Collections.sort(articles,  (a,b) -> b.getDate().compareTo(a.getDate()));
+        return articles;
     }
 
     //Lisätään uusi artikkeli, näillä tiedoilla.

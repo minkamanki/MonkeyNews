@@ -46,9 +46,7 @@
             <ul style="list-style-type:none">
                 <li th:each="article : ${articles}">
                     <a th:href="@{/articles/{articleId}(articleId=${article.id})}" th:text="${article.title}">article title</a>
-                    <form th:action="@{/articles/{articleId}(articleId=${article.id})}" th:method="DELETE">
-                        <input type="submit" value="Remove"/>
-                    </form><br/>
+                    
 
                     <span>Authors:</span>
                     <ul>
@@ -59,6 +57,9 @@
                     <ul>
                         <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
                     </ul>
+                    <form th:action="@{/articles/{articleId}(articleId=${article.id})}" th:method="DELETE">
+                        <input type="submit" value="Remove article"/>
+                    </form><br/>
                 </li>
             </ul>
 
