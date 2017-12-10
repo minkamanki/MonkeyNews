@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import uutiset.domain.Article;
 import uutiset.domain.Author;
 import uutiset.domain.Category;
@@ -37,16 +38,16 @@ public class ArticleService {
     public void add(String title, String lede, String text, byte[] content) {
         Picture p = new Picture();
         p.setContent(content);
-        
+
         Article article = new Article();
         article.setTitle(title);
         article.setLede(lede);
         article.setText(text);
-        article.setContent(p); 
+        article.setContent(p);
         article.setDate(new Date());
-        article.setReadCount(0); 
+        article.setReadCount(0);
         pictureRepository.save(p);
-        articleRepository.save(article);        
+        articleRepository.save(article);
     }
 
     @Transactional
@@ -66,13 +67,13 @@ public class ArticleService {
         articleRepository.delete(article);
     }
 
-    public  List<Article>  findByCategory(String name) {
+    public List<Article> findByCategory(String name) {
         List<Article> articles = list();
-        List<Article> articlesWhitCategory = new ArrayList<>(); 
-        for(Article a : articles){
+        List<Article> articlesWhitCategory = new ArrayList<>();
+        for (Article a : articles) {
             List<Category> gategories = a.getCategories();
-            for(Category g : gategories){
-                if (g.getName().equals(name)){
+            for (Category g : gategories) {
+                if (g.getName().equals(name)) {
                     articlesWhitCategory.add(a);
                 }
             }
@@ -86,6 +87,18 @@ public class ArticleService {
 
     public List<Article> mostReadArticles() {
         return articleRepository.findAll(PageRequest.of(0, 5, Sort.Direction.DESC, "readCount")).getContent();
+    }
+
+    public void editArticle(Long articleId, String title, String lede, String text, byte[] bytes) {
+        Article article = findById(articleId);
+        article.setTitle(title);
+        article.setLede(lede);
+        article.setText(text);
+
+        if (bytes.length > 0) {
+            article.getContent().setContent(bytes);
+        }
+        articleRepository.save(article);
     }
 
 }

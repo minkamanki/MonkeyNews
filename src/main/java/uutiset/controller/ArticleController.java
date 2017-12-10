@@ -79,5 +79,16 @@ public class ArticleController {
         return "redirect:/articles/" + articleId;
     }
 
+    @RequestMapping(value = "/{articleId}/edit", method = RequestMethod.GET)
+    public String editPage(Model model, @PathVariable(value = "articleId") Long articleId) {
+        model.addAttribute("article", articleService.findById(articleId));
+        return "edit";
+    }
+
+    @RequestMapping(value = "/{articleId}/edit", method = RequestMethod.POST)
+    public String editArticle(@PathVariable(value = "articleId") Long articleId, @RequestParam String title, @RequestParam String lede, @RequestParam String text, @RequestParam(value="file", required=false) MultipartFile file) throws IOException {
+        articleService.editArticle(articleId, title, lede, text, file.getBytes());
+        return "redirect:/articles/" + articleId;
+    }
 
 }

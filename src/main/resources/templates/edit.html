@@ -11,18 +11,28 @@
     </head>
     <body>
         <div calss="content">
-            
-        <h1 th:text="${article.title}">Book</h1>
+        <h1>MonkeyNews</h1> 
+        
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="/home">Browse news</a></li>
+            <li class="nav-item"><a class="nav-link" href="/articles">Add news</a></li>
+            <li class="nav-item"><a class="nav-link" href="/authors">Edit authors</a></li>
+            <li class="nav-item"><a class="nav-link" href="/categories">Edit categories</a></li>
+        </ul>    
+ 
+        
+        <h1 th:text="${article.title}">Article</h1>
 
         <form method="POST" th:action="@{~/articles/{articleId}/edit(articleId=${article.id})}" enctype="multipart/form-data">
             <label>Title:</label><br/>
             <input type="text" name="title" th:value="${article.title}" required/><br/>
             <label>Lead paragraph:</label><br/>
-            <textarea name="text" th:value="${article.lede}" required></textarea><br/>
-            <input type="text" name="ISBN" th:value="${article.text}" required/><br/>
-            <input type="file" name="file" required/><br/>
+            <input type="text" name="lede" th:value="${article.lede}" required/><br/>
+            <textarea name="text" th:text="${article.text}" required></textarea><br/>
+            <input type="file" name="file"/><br/>
             <button type="submit" name="send">Edit</button>
         </form>
+        
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -31,10 +41,3 @@
        
     </body>
 </html>
-            <form method="POST" action="/articles" >
-                <input type="text" name="title" placeholder="Title" required/><br></br>
-                <input type="text" name="lede" placeholder="Lead paragraph"/><br></br>
-                <textarea name="text" required></textarea><br></br>
-                <input type="file" name="file" required/><br></br>
-                <input type="submit" value="Send!"/>
-            </form>

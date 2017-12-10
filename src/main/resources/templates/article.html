@@ -12,7 +12,9 @@
  
     </head>
     <body>
-        <div>
+        <div calss="content">
+            
+            <h1>MonkeyNews</h1>    
         <ul class="nav">
             <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
             <li  class="nav-item" th:each="category :${categories}">
@@ -64,6 +66,7 @@
             <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
         </ul>
         <div sec:authorize="hasRole('USER')">
+        <a th:href="@{/articles/{articleId}/edit(articleId=${article.id})}">Edit article</a>
         <a href="/articles">Edit articles</a>
         </div>
         </div>
