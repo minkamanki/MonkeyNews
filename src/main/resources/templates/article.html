@@ -12,6 +12,9 @@
                 max-width: 700px;
                 max-height: 700px;
             }
+            p {
+                white-space: pre-wrap; 
+            }
         </style>
     </head>
     <body>
@@ -36,8 +39,9 @@
             <p>
                 <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
                 <br/>
-            </p>  
-            <p style="font-family:Verdana; font-size:120%;"><span th:text="${article.text}">article</span> </p>
+            </p>
+            
+            <p style="font-family:Verdana; font-size:120%;" th:text="${article.text}">article</p>
 
 
             <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(authors)}">
