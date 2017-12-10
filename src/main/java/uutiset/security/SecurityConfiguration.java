@@ -7,6 +7,7 @@ package uutiset.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,11 +20,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/home").permitAll()
-                .antMatchers("/articles/{articleId}/picture").permitAll()
-                .antMatchers("/articles/{articleId}").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers("/home/{category}").permitAll()
+                .antMatchers(HttpMethod.GET, "/home").permitAll()
+                .antMatchers(HttpMethod.GET, "/articles/{articleId}/picture").permitAll()
+                .antMatchers(HttpMethod.GET, "/articles/{articleId}").permitAll()
+                .antMatchers(HttpMethod.GET, "/").permitAll()
+                .antMatchers("/images/monkeynews.jpg").permitAll()
+                .antMatchers(HttpMethod.GET, "/home/{category}").permitAll()
                 .anyRequest().authenticated().and()
                 .formLogin().permitAll();
         http.formLogin()

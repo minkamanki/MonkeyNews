@@ -52,7 +52,8 @@ public class ArticleController {
     public String findOne(Model model, @PathVariable Long articleId) {
         articleService.findById(articleId).setReadCount(articleService.findById(articleId).getReadCount() + 1);
         model.addAttribute("authors", authorService.findOtherAuthors(articleId));
-        model.addAttribute("categories", categoryService.findOtherCategories(articleId));
+        model.addAttribute("othercategories", categoryService.findOtherCategories(articleId));
+        model.addAttribute("categories", categoryService.listForNav());
         model.addAttribute("article", articleService.findById(articleId));
         return "article";
     }

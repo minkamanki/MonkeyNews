@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>MonkeyNews</title>
@@ -11,7 +10,7 @@
     </head>
 
     <body>
-        <div calss="content">
+        <div class="container">
         <h1>MonkeyNews</h1>
         <ul class="nav">
             <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
@@ -20,6 +19,7 @@
                     <span th:text="${category.name}">Category</span></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="/home/mostRead">Most read this week!</a></li>
+            <li class="nav-item"><a class="nav-link" href="/articles">Edit articles</a></li>
         </ul>
 
         <h1><span th:text="${categoryName}">News</span></h1>
@@ -32,7 +32,6 @@
             </li>
         </ol>
 
-        <a href="/articles">Add news</a><br/>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

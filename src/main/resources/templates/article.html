@@ -12,9 +12,9 @@
  
     </head>
     <body>
-        <div calss="content">
+         <div class="container">
             
-            <h1>MonkeyNews</h1>    
+        <h1>MonkeyNews</h1>    
         <ul class="nav">
             <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
             <li  class="nav-item" th:each="category :${categories}">
@@ -22,6 +22,7 @@
                     <span th:text="${category.name}">Category</span></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="/home/mostRead">Most read this week!</a></li>
+            <li class="nav-item"><a href="/articles">Edit articles</a></li>
         </ul>
         
         <h1><span th:text="${article.title}">Title</span></h1>
@@ -50,12 +51,12 @@
             <li th:each="author : ${article.authors}" th:text="${author.name}">author</li>
         </ul>
 
-        <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(categories)}">
+        <div sec:authorize="hasRole('USER')" th:if="${not #lists.isEmpty(othercategories)}">
             <h3>Add category to article</h3>
 
             <form method="POST" th:action="@{/articles/{articleId}/category(articleId=${article.id})}">
                 <select name="categoryId">
-                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">category</option>
+                    <option th:each="category : ${othercategories}" th:value="${category.id}" th:text="${category.name}">category</option>
                 </select>
                 <input type="submit" value="Assign" id="add-to-article"/>
             </form>
@@ -66,7 +67,7 @@
             <li th:each="category : ${article.categories}" th:text="${category.name}">category</li>
         </ul>
         <div sec:authorize="hasRole('USER')">
-        <a th:href="@{/articles/{articleId}/edit(articleId=${article.id})}">Edit article</a>
+        <a th:href="@{/articles/{articleId}/edit(articleId=${article.id})}">Edit this article</a> <br>
         <a href="/articles">Edit articles</a>
         </div>
         </div>
