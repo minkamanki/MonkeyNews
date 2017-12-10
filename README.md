@@ -1,6 +1,8 @@
 # MonkeyNews
 Simple news site.
 
+[![Build Status](https://travis-ci.org/minkamanki/MonkeyNews.svg?branch=master)](https://travis-ci.org/minkamanki/MonkeyNews)
+
 [Wepa projekti](http://monkeynews.herokuapp.com/)
 
 MonkeyNewsin juuresta aukee valikko josta voi joko siirtyä selaamaan artikkeleita [Browse news](http://monkeynews.herokuapp.com/home) tai siirtyä hallintapaneeliin [Add news](http://monkeynews.herokuapp.com/articles/).<br />
